@@ -8,7 +8,10 @@ namespace API_Asset.Bases
 {
     public interface IEntity
     {
-        [Key]
-        int id { get; set; }
+        int Id { get; set; }
+        bool IsDelete { get; set; }
+        void Create();
+        void Update();
+        void Delete();
     }
 }

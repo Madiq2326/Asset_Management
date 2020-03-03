@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using API_Asset.Contexts;
 using API_Asset.MyConnections;
 using API_Asset.Repositories;
+using API_Asset.Repositories.Data;
 using API_Asset.Repositories.Interfaces;
-using API_Asset.Services;
-using API_Asset.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API_Asset
 {
@@ -40,14 +42,30 @@ namespace API_Asset
             services.AddDbContext<MyContext>(options =>
            options.UseMySql(Configuration.GetConnectionString("MyConnection")));
 
-            services.AddScoped<IServiceRepository, BrandRepository>();
-            services.AddScoped<IBrandService, BrandService>();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(21);
+            });
 
-            services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IItemService, IItemService>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = false,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
 
-            services.AddScoped<ISupplierRepository, SupplierRepository>();
-            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<BrandRepository>();
+            services.AddScoped<SupplierRepository>();
+            services.AddScoped<ItemRepository>();
+            services.AddScoped<IncomingItemRepository>();
+            services.AddScoped<OutgoingItemRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,8 +80,10 @@ namespace API_Asset
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSession();
         }
     }
 }

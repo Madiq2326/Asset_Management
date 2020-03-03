@@ -12,3 +12,17 @@ C:\Users\muham\OneDrive\Documents\Visual Studio 2017\Projects\API_Asset\API_Asse
 C:\Users\muham\OneDrive\Documents\Visual Studio 2017\Projects\API_Asset\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.dll
 C:\Users\muham\OneDrive\Documents\Visual Studio 2017\Projects\API_Asset\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.pdb
 C:\Users\muham\OneDrive\Documents\Visual Studio 2017\Projects\API_Asset\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.csprojAssemblyReference.cache
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\bin\Debug\netcoreapp2.1\API_Asset.deps.json
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\bin\Debug\netcoreapp2.1\API_Asset.runtimeconfig.json
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\bin\Debug\netcoreapp2.1\API_Asset.runtimeconfig.dev.json
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\bin\Debug\netcoreapp2.1\API_Asset.dll
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\bin\Debug\netcoreapp2.1\API_Asset.pdb
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.csproj.CoreCompileInputs.cache
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.RazorAssemblyInfo.cache
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.RazorAssemblyInfo.cs
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.AssemblyInfoInputs.cache
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.AssemblyInfo.cs
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.RazorTargetAssemblyInfo.cache
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.dll
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.pdb
+C:\Users\muham\OneDrive\Documents\git_hub_app\Asset_Management\Asset_Management\API_Asset\obj\Debug\netcoreapp2.1\API_Asset.csprojAssemblyReference.cache

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_Asset.Bases;
 using API_Asset.Models;
-using API_Asset.Services.Interfaces;
+using API_Asset.Repositories.Data;
+using API_Asset.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,64 +13,71 @@ namespace API_Asset.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class ItemsController : BasesController<Item, ItemRepository>
     {
-        IItemService _itemService;
+        private readonly ItemRepository _itemRepository;
 
-        public ItemsController(IItemService itemService)
+        public ItemsController(ItemRepository itemRepository) : base(itemRepository)
         {
-            _itemService = itemService;
+            _itemRepository = itemRepository;
         }
 
-        [HttpGet]
-        public IQueryable<Item> Get()
+        [HttpGet("List_Item")]
+        public ActionResult Get_List()
         {
-            var item = _itemService.Get();
-            return item;
+            var getlist = _itemRepository.Get_List();
+            return Ok(getlist);
         }
 
-        [HttpGet("{Id}")]
-        public ActionResult Get(int Id)
+        [HttpPost("Post_InOut")]
+        public ActionResult Multiple_Post(ItemInVM itemInVM)
         {
-            var item = _itemService.Get(Id);
-            if (item != null)
+            itemInVM.Create();
+            var create = _itemRepository.Multiple_Post(itemInVM);
+            if (create > 0)
             {
-                return Ok(item);
+                return Ok(create + " data has been created");
             }
             return BadRequest();
         }
 
-        [HttpPost]
-        public ActionResult Post(Item item)
+        [HttpPut("Update_InOut/{Id}")]
+        public ActionResult Put(int Id, ItemInVM itemInVM)
         {
-            var post = _itemService.Post(item);
-            if (post > 0)
+            var get = _itemRepository.Get(Id);
+            var read = get.Result.Stock;
+            itemInVM.Update();
+
+            if (read < itemInVM.Stock)
             {
-                return Ok(post);
+                itemInVM.Temp = itemInVM.Stock - read;
+                var put_in = _itemRepository.Update_In(Id, itemInVM);
+                if (put_in > 0)
+                {
+                    return Ok("Update Success In");
+                }
             }
-            return BadRequest();
+            else if (read > itemInVM.Stock)
+            {
+                itemInVM.Temp = read - itemInVM.Stock;
+                var put_out = _itemRepository.Update_Out(Id, itemInVM);
+                if (put_out > 0)
+                {
+                    return Ok("Update Success Out");
+                }
+            }
+            return BadRequest("Update Failed");
         }
 
-        [HttpPut("{Id}")]
-        public ActionResult Put(int Id, Item item)
-        {
-            var put = _itemService.Put(Id, item);
-            if (put > 0)
-            {
-                return Ok(put);
-            }
-            return BadRequest();
-        }
-
-        [HttpDelete("{Id}")]
+        [HttpDelete("Delete_InOut/{Id}")]
         public ActionResult Delete(int Id)
         {
-            var delete = _itemService.Delete(Id);
+            var delete = _itemRepository.Multiple_Delete(Id);
             if (delete == true)
             {
-                return Ok();
+                return Ok("Soft Delete Success");
             }
-            return BadRequest();
+            return BadRequest("Soft Delete Failed");
         }
     }
 }

@@ -9,10 +9,10 @@ namespace API_Asset.Repositories.Interfaces
     public interface IRepository<T>
         where T : class
     {
-        IQueryable<T> Get();
-        T Get(int Id);
-        int Post(T entitye);
-        int Put(T entity);
-        bool Delete(int Id);
+        Task<IEnumerable<T>> Get();
+        Task<T> Get(int Id);
+        Task<int> Post(T entity);
+        Task<bool> Put(T entity);
+        Task<bool> Delete(int Id);
     }
 }

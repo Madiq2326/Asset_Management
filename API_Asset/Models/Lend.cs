@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace API_Asset.Models
 {
-    [Table("tb_m_lend")]
-    public class Lend : BaseModel, IEntity
+    [Table("TB_M_Lend")]
+    public class Lend : BaseModel
     {
-        public int id { get; set; }
         public int Employee_id { get; set; }
         public DateTime Lend_Date { get; set; }
         public DateTime Approve_Date_1 { get; set; }

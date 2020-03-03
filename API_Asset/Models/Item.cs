@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace API_Asset.Models
 {
-    [Table("tb_m_item")]
-    public class Item : BaseModel, IEntity
+    [Table("TB_M_Item")]
+    public class Item : BaseModel
     {
-        public int id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public int Stock { get; set; }
         public string Information { get; set; }
         public string Status { get; set; }
         public int Brand_id { get; set; }
+        public int Supplier_id { get; set; }
 
-        [ForeignKey("Brand_id")]
-        public Brand Brand { get; set; }
+        //[ForeignKey("Brand_id")]
+        //public Brand Brand { get; set; }
+
+        //[ForeignKey("Supplier_id")]
+        //public Supplier Supplier { get; set; }
     }
 }
