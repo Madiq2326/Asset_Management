@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace API_Asset.Models
 {
-    [Table("tb_r_outgoingitem")]
-    public class OutgoingItem : IEntity
+    [Table("TB_R_Outgoingitem")]
+    public class OutgoingItem : BaseModel
     {
-        public int id { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
         public string Information { get; set; }

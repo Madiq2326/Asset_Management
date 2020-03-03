@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using API_Asset.Contexts;
 using API_Asset.MyConnections;
 using API_Asset.Repositories;
+using API_Asset.Repositories.Data;
 using API_Asset.Repositories.Interfaces;
-using API_Asset.Services;
-using API_Asset.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,16 +37,13 @@ namespace API_Asset
 
             services.AddEntityFrameworkMySql();
             services.AddDbContext<MyContext>(options =>
-           options.UseMySql(Configuration.GetConnectionString("MyConnection")));
+            options.UseMySql(Configuration.GetConnectionString("MyConnection")));
 
-            services.AddScoped<IServiceRepository, BrandRepository>();
-            services.AddScoped<IBrandService, BrandService>();
-
-            services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IItemService, IItemService>();
-
-            services.AddScoped<ISupplierRepository, SupplierRepository>();
-            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<BrandRepository>();
+            services.AddScoped<SupplierRepository>();
+            services.AddScoped<ItemRepository>();
+            services.AddScoped<RequestRepository>();
+            services.AddScoped<LendRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

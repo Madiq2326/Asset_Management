@@ -19,7 +19,7 @@ namespace API_Asset.Migrations
 
             modelBuilder.Entity("API_Asset.Models.Brand", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDate");
@@ -32,19 +32,25 @@ namespace API_Asset.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("tb_m_brand");
+                    b.ToTable("TB_M_Brand");
                 });
 
             modelBuilder.Entity("API_Asset.Models.IncomingItem", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<DateTime>("DeleteDate");
 
                     b.Property<DateTime>("Incoming_date");
 
                     b.Property<string>("Information");
+
+                    b.Property<bool>("IsDelete");
 
                     b.Property<int>("Item_id");
 
@@ -54,18 +60,20 @@ namespace API_Asset.Migrations
 
                     b.Property<int>("Supplier_id");
 
-                    b.HasKey("id");
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("Item_id");
 
                     b.HasIndex("Supplier_id");
 
-                    b.ToTable("tb_r_incominitem");
+                    b.ToTable("TB_R_Incominitem");
                 });
 
             modelBuilder.Entity("API_Asset.Models.Item", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Brand_id");
@@ -88,16 +96,16 @@ namespace API_Asset.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Brand_id");
 
-                    b.ToTable("tb_m_item");
+                    b.ToTable("TB_M_Item");
                 });
 
             modelBuilder.Entity("API_Asset.Models.Lend", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Approve_Date_1");
@@ -126,19 +134,25 @@ namespace API_Asset.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Item_id");
 
-                    b.ToTable("tb_m_lend");
+                    b.ToTable("TB_M_Lend");
                 });
 
             modelBuilder.Entity("API_Asset.Models.OutgoingItem", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<DateTime>("DeleteDate");
+
                     b.Property<string>("Information");
+
+                    b.Property<bool>("IsDelete");
 
                     b.Property<int>("Item_id");
 
@@ -148,16 +162,18 @@ namespace API_Asset.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.HasKey("id");
+                    b.Property<DateTime>("UpdateDate");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("Item_id");
 
-                    b.ToTable("tb_r_outgoingitem");
+                    b.ToTable("TB_R_Outgoingitem");
                 });
 
             modelBuilder.Entity("API_Asset.Models.Request", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Approve_Date_1");
@@ -186,18 +202,18 @@ namespace API_Asset.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Brand_id");
 
                     b.HasIndex("Item_id");
 
-                    b.ToTable("tb_m_request");
+                    b.ToTable("TB_M_Request");
                 });
 
             modelBuilder.Entity("API_Asset.Models.Supplier", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
@@ -216,9 +232,9 @@ namespace API_Asset.Migrations
 
                     b.Property<DateTime>("UpdateDate");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("tb_m_supplier");
+                    b.ToTable("TB_M_Supplier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

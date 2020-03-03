@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace API_Asset.Models
 {
-    [Table("tb_m_supplier")]
-    public class Supplier : BaseModel, IEntity
+    [Table("TB_M_Supplier")]
+    public class Supplier : BaseModel
     {
-        public int id { get; set; }
         public string Name { get; set; }
         public string Phone_Number { get; set; }
         public string Address { get; set; }
